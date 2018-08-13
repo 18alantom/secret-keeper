@@ -1,0 +1,42 @@
+.dashboard {
+  @include formElements;
+  grid-template-rows: 1fr 1fr 0.2fr 6fr 2fr;
+  width: 20%;
+  min-width: 300px;
+  height: 55%;
+  align-items: center;
+  p {
+    // padding: 16px;
+    font-size: 1rem;
+    font-weight: 100;
+    letter-spacing: 2px;
+    text-align: center;
+  }
+  h5 {
+    @include formTitles;
+    align-self: start;
+  }
+  .notsecret {
+    margin-top: 0px;
+  }
+  .name {
+    color: darken($color-hf, 10%);
+    font-size: 1.2rem;
+    letter-spacing: 4px;
+    line-height: 3.6rem;
+  }
+  .age {
+    color: darken($color-hf, 10%);
+  }
+  .line {
+    border: 1px solid $color-hf;
+  }
+  .secret {
+    align-self: start;
+    overflow: scroll;
+  }
+  a{
+    @extend #submit;
+    text-decoration: none;
+  }
+}

@@ -1,0 +1,13 @@
+extends template
+block content
+  form(action="/login", method="post").login 
+    h5 login
+    - const username = 'username'
+    - const password = 'password'
+    input(type="text", name="username",autocomplete="off", placeholder=username).text
+    input(type="password", name="password", placeholder=password).text
+    input(type="submit", value="login")#submit
+  //- script.
+    //- const submit = document.querySelector('input[type="submit"]');
+    //- submit.addEventListener('click',(e)=>e.preventDefault());
+    

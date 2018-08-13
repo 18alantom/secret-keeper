@@ -1,0 +1,17 @@
+extends template
+block content
+  .dashboard
+    h5
+      |Welcome
+      br
+      span.name #{username} 
+    p.notsecret 
+      |of age 
+      span.age #{age}
+      |,
+      | beneath this line lies
+      | your secret.
+    .line
+    p.secret #{secret}
+    a(href="/logout") thanks
+      //- button(type="button")#thanks thanks

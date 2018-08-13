@@ -1,0 +1,21 @@
+.login {
+  width: 20%;
+  min-width: 300px;
+  height: 55%;
+  grid-template-rows: 1fr 4fr 4fr 2fr;
+  align-items: center;
+  @include formElements;
+  .text {
+    @include textInputs;
+    border-bottom: 1.5px solid $color-hf;
+  }
+  h5 {
+    @include formTitles;
+    align-self: start;
+  }
+}
+
+#submit {
+  align-self: end !important;
+  @include submitButtons;
+}

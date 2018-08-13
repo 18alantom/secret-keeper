@@ -1,0 +1,41 @@
+html(lang="en")
+  - const title = "Secret Keeper";
+  head 
+    meta(charset="utf-8")
+    meta(name="viewport", content="width=device-width, inital-scale=1.0")
+    meta(http-equiv="X-UA-Compatible", content="ie=edge")
+    link(rel="stylesheet", href="./public/style.css")
+    title= title
+  body
+    mixin button(href,name)
+      a(href=href)
+        button.navbutton(name=name)= name
+    header
+      h1 #{title}
+      .nav
+        if loggedin
+          if isSecret
+            +button('/dashboard','dashboard')
+          else
+            +button('/secret','secret')
+          +button('/logout','logout')
+        else
+          +button('/login','login')
+          +button('/register','register')
+    .root
+      block content
+        p(id="templatetext")
+          span.temp some latin for your troubles. 
+          |Lorem ipsum dolor, sit amet consectetur adipisicing elit. Secrets you leave here, no one but you sees. Harum, consequatur aliquid expedita atque assumenda animi quasi vitae accusantium sapiente quas eius error minima repellat reprehenderit officia exercitationem odio eum corrupti! 
+          span.temp click the login or register button above.
+      .flash
+        if messages
+          - console.log(messages);
+          if messages.error && messages.error.length
+            p#flashError= messages.error[0]
+          else if messages.err
+            p#flashError= messages.err
+          else if messages.suc
+            p#flashSuccess= messages.suc
+    footer 
+      p #{title}

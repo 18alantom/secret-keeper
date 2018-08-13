@@ -1,0 +1,19 @@
+extends template
+block content
+  form(action="/register", method="post").register
+    h5 register
+    - const username = 'username'
+    - const password = 'password'
+    - const rpassword = 'repeat password'
+    - const age = 'age'
+    - const secret = 'secret'
+    input(type="text", name="username",autocomplete="off", placeholder=username).text
+    input(type="password", name="password", placeholder=password).text
+    input(type="password", name="rpassword", placeholder=rpassword).text
+    input(type="number", name="age",autocomplete="off", placeholder=age).text
+    textarea(name="secret", placeholder=secret).textarea
+    input(type="submit", value="Submit")#submit
+  //- script.
+    //- const submit = document.querySelector('input[type="submit"]');
+    //- submit.addEventListener('click',(e)=>e.preventDefault());
+    

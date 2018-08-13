@@ -1,0 +1,115 @@
+@import "config";
+@import "login";
+@import "dashboard";
+@import "register";
+@import "secret";
+html {
+  height: 100%;
+  font-family: Helvetica, sans-serif;
+  font-size: 18px;
+  body {
+    margin: 0px;
+    background: rgba($color-bg, 0.5);
+    display: grid;
+    grid-template-rows: 2fr 16fr auto;
+    height: 100%;
+  }
+}
+
+header,
+footer {
+  box-shadow: $bs-light;
+  width: 100%;
+  background: $color-hf;
+  color: $color-text-h;
+  text-align: center; // box-shadow: $bs-light;
+  text-transform: uppercase;
+  letter-spacing: 20px;
+  padding: 8px;
+  width: calc(100% - 16px);
+  z-index: 1;
+}
+
+header {
+  h1 {
+    color: $color-text-h;
+    text-shadow: 0px 2px 0px darken($color-hf, 5%);
+  }
+  .nav {
+    margin: 0px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    button {
+      font-weight: 100;
+      text-transform: uppercase;
+      width: 100%;
+      border: none;
+      border-radius: 0px;
+      background: transparent;
+      color: darken($color-text-s, 15%);
+      letter-spacing: 3px;
+      transition: $transition-1;
+      padding: 8px;
+      outline: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background: rgba(0, 0, 0, 0.05);
+    }
+    button:focus {
+      box-shadow: $bs-lighter;
+      background: rgba(0, 0, 0, 0.05);
+    }
+  }
+}
+
+footer {
+  p {
+    // margin: 6px 0px 0px 0px;
+    font-size: 0.75rem;
+    font-weight: 400;
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+  }
+}
+
+.root {
+  color: darken($color-text-s, 20%);
+  background: $color-bg;
+  margin: 0px auto;
+  width: 100%;
+  overflow: scroll;
+  #templatetext {
+    @include formElements;
+    @include plainContainer;
+    display: inherit;
+    color: $color-text-dark-hf;
+    font-size: 1rem;
+    letter-spacing: 2px;
+    font-weight: 100;
+    text-align: justify;
+    width: 20%;
+    min-width: 300px;
+    line-height: 1.4rem;
+  }
+  .temp {
+    color: $color-text-dark-s;
+    @include uppercaseWide;
+    font-size: 0.8rem;
+  }
+  .flash {
+    text-align: center;
+    p {
+      margin: 0px;
+      font-size: 0.7rem;
+      @include uppercaseWide;
+    }
+    #flashError {
+      color: darken(saturate($color-text-p, 30%), 20%);
+    }
+    #flashSuccess {
+      color: darken(saturate($color-hf, 30%), 20%);
+    }
+  }
+}
