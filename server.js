@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
 const flash = require("express-flash");
+const helmet = require("helmet");
 // authorizaion
 const auth = require("./auth/auth");
 // routes
@@ -31,6 +32,7 @@ const store = new MongoStore({ mongooseConnection: mongoose.connection });
 app.set("views", "./views");
 app.set("view engine", "pug");
 // set middlewares
+app.use(helmet());
 app.use("/public", express.static("./public"));
 app.use(express.urlencoded({ extended: true }));
 app.use(
