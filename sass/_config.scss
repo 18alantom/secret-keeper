@@ -7,10 +7,16 @@ $color-text-s: #f2c5ca;
 $color-text-dark-hf: darken($color-hf, 10%);
 $color-text-dark-s: darken($color-text-s, 20%);
 // shadows
-$bs-light: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 2px rgba(0, 0, 0, 0.24);
-$bs-lighter: 0px 1px 3px rgba(0, 0, 0, 0.06), 0px 1px 2px rgba(0, 0, 0, 0.12);
+$bs-light: 0px 1px 3px rgba(0, 0, 0, 0.12),
+0px 1px 2px rgba(0, 0, 0, 0.24);
+$bs-lighter: 0px 1px 3px rgba(0, 0, 0, 0.06),
+0px 1px 2px rgba(0, 0, 0, 0.12);
 // transition
 $transition-1: all 200ms ease-out;
+// dimensions
+$height-form: 55%;
+$margin: 64px auto 16px auto;
+
 // MIXINS
 @mixin uppercaseWide {
   text-transform: uppercase;
@@ -33,13 +39,19 @@ $transition-1: all 200ms ease-out;
 }
 
 @mixin formElements {
-  margin: 64px auto;
-  margin-bottom: 16px;
-  box-shadow: $bs-lighter;
+  margin: $margin;
+  width: 20%;
+  min-width: 300px;
+  // box-shadow: $bs-lighter;
   display: grid;
   background: lighten($color-bg, 2%);
   border: 2px solid $color-hf;
   padding: 16px;
+  @media only screen and (max-width: 420px) {
+    box-sizing: border-box;
+    margin: 16px auto;
+    width: calc(100% - 32px);
+  }
 }
 
 @mixin inputs {

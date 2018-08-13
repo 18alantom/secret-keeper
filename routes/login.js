@@ -10,9 +10,7 @@ router.get("/", (req, res) => {
 
 // post: redirect to /dashboard if correct credentials else back to /login with flash message.
 router.post("/", passport.authenticate("local", { failureRedirect: "/login", failureFlash: "your spelt your name or password incorrectly" }), (req, res) => {
-  console.log(req.user, req.body.username, req.flash("success"));
   const { secret, age } = req.user;
-  console.log(req.body.username, secret, age);
   res.redirect("/dashboard");
 });
 

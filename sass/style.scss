@@ -34,6 +34,10 @@ header {
   h1 {
     color: $color-text-h;
     text-shadow: 0px 2px 0px darken($color-hf, 5%);
+    margin: 16px auto;
+    @media only screen and (max-width: 370px) {
+      margin: 0px auto;
+    }
   }
   .nav {
     margin: 0px;
@@ -76,8 +80,7 @@ footer {
 
 .root {
   color: darken($color-text-s, 20%);
-  background: $color-bg;
-  margin: 0px auto;
+  background: $color-bg; // margin: 0px auto;
   width: 100%;
   overflow: scroll;
   #templatetext {
@@ -89,8 +92,6 @@ footer {
     letter-spacing: 2px;
     font-weight: 100;
     text-align: justify;
-    width: 20%;
-    min-width: 300px;
     line-height: 1.4rem;
   }
   .temp {

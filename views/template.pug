@@ -17,7 +17,7 @@ html(lang="en")
           if isSecret
             +button('/dashboard','dashboard')
           else
-            +button('/secret','secret')
+            +button('/secret','wall')
           +button('/logout','logout')
         else
           +button('/login','login')
@@ -25,12 +25,16 @@ html(lang="en")
     .root
       block content
         p(id="templatetext")
-          span.temp some latin for your troubles. 
-          |Lorem ipsum dolor, sit amet consectetur adipisicing elit. Secrets you leave here, no one but you sees. Harum, consequatur aliquid expedita atque assumenda animi quasi vitae accusantium sapiente quas eius error minima repellat reprehenderit officia exercitationem odio eum corrupti! 
+          span.temp here's some latin for your troubles. 
+          |Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
+          |Secrets you leave here, no one but you sees. Harum, consequatur aliquid 
+          span.temp add your secret to the wall 
+          |expedita atque assumenda animi quasi vitae 
+          |accusantium sapiente quas eius error minima repellat reprehenderit 
+          |officia exercitationem odio eum corrupti! 
           span.temp click the login or register button above.
       .flash
         if messages
-          - console.log(messages);
           if messages.error && messages.error.length
             p#flashError= messages.error[0]
           else if messages.err
