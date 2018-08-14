@@ -8,12 +8,8 @@ const stitch = require("../utils/stitch");
 router.get("/", ensureAuthenticated, (req, res) => {
   Secret.find()
     .then(secrets => {
-      if (secrets.length > 1) {
-        let stringOfSecrets = stitch(secrets);
-        res.render("secret", { loggedin: true, isSecret: true, secrets: stringOfSecrets });
-      } else {
-        res.render("secret", { loggedin: true, isSecret: true });
-      }
+      let stringOfSecrets = stitch(secrets);
+      res.render("secret", { loggedin: true, isSecret: true, secrets: stringOfSecrets });
     })
     .catch(error => {
       errorLogger(error);
