@@ -9,7 +9,7 @@ router.get("/", (req, res) => {
 });
 
 // post: redirect to /dashboard if correct credentials else back to /login with flash message.
-router.post("/", passport.authenticate("local", { failureRedirect: "/login", failureFlash: "your spelt your name or password incorrectly" }), (req, res) => {
+router.post("/", passport.authenticate("local", { failureRedirect: "/login", failureFlash: "incorrect credientials" }), (req, res) => {
   const { secret, age } = req.user;
   res.redirect("/dashboard");
 });
