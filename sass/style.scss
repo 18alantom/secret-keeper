@@ -69,12 +69,24 @@ header {
 
 footer {
   p {
-    // margin: 6px 0px 0px 0px;
     font-size: 0.75rem;
     font-weight: 400;
     margin: 0px;
     padding: 0px;
     width: 100%;
+  }
+  #plug {
+    text-transform: none;
+    text-decoration: none;
+    letter-spacing: normal;
+    margin-top: 8px;
+  }
+  a {
+    font-size: 0.6rem;
+    letter-spacing: 1px;
+    text-decoration: none;
+    color: $color-text-dark-hf;
+    cursor: pointer;
   }
 }
 
