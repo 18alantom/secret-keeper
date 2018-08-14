@@ -6,6 +6,8 @@ const MongoStore = require("connect-mongo")(session);
 const flash = require("express-flash");
 const helmet = require("helmet");
 const compression = require("compression");
+const fs = require("fs");
+const sass = require("node-sass");
 // authorizaion
 const auth = require("./auth/auth");
 // routes
@@ -15,7 +17,7 @@ const dashboard = require("./routes/dashboard");
 const logout = require("./routes/logout");
 const secret = require("./routes/secret");
 //get db uri and port number from process.env
-const { MONGODB_URI, PORT, SECRET } = process.env;
+const { MONGODB_URI, PORT, SECRET, NODE_ENV } = process.env;
 const app = express();
 // connect to database
 mongoose
@@ -71,5 +73,24 @@ app.use((req, res) => {
   req.flash("err", "you have chosen the wrong path");
   res.redirect("/");
 });
-// start server
-app.listen(PORT, () => console.log(`listening on port ${PORT}`));
+
+// if in production compile css and the listen else use the compiled css
+if (NODE_ENV === "production") {
+  const sassPath = `${__dirname}/sass/style.scss`;
+  const outPath = `${__dirname}/public/style.css`;
+  sass.render({ file: sassPath, outFile: outPath }, (error, result) => {
+    if (error) {
+      console.error(error);
+    } else {
+      fs.writeFile(outPath, result.css, err => {
+        if (err) {
+          console.error(err);
+        } else {
+          app.listen(PORT, () => console.log(`listening on port ${PORT}`));
+        }
+      });
+    }
+  });
+} else {
+  app.listen(PORT, () => console.log(`listening on port ${PORT}`));
+}
