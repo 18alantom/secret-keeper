@@ -1,13 +1,13 @@
 {
-  "name": "l-multi",
+  "name": "secret-keeper",
   "version": "1.0.0",
-  "description": "",
+  "description": "Store your secrets with the secret keeper.",
   "main": "server.js",
   "scripts": {
     "watch": "nodemon",
     "sass": "node-sass -w sass -o public/ -r"
   },
-  "author": "",
+  "author": "18alan",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
