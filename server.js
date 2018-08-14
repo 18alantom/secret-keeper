@@ -5,6 +5,7 @@ const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
 const flash = require("express-flash");
 const helmet = require("helmet");
+const compression = require("compression");
 // authorizaion
 const auth = require("./auth/auth");
 // routes
@@ -49,6 +50,7 @@ app.use(
 );
 auth(app);
 app.use(flash());
+app.use(compression());
 // set routers for certain paths
 
 app.use("/register", register);
