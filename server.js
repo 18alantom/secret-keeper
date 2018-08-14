@@ -7,6 +7,7 @@ const flash = require("express-flash");
 const helmet = require("helmet");
 const compression = require("compression");
 const fs = require("fs");
+const path = require("path");
 const sass = require("node-sass");
 // authorizaion
 const auth = require("./auth/auth");
@@ -76,17 +77,35 @@ app.use((req, res) => {
 
 // if in production compile css and the listen else use the compiled css
 if (NODE_ENV === "production") {
-  const sassPath = `${__dirname}/sass/style.scss`;
-  const outPath = `${__dirname}/public/style.css`;
-  sass.render({ file: sassPath, outFile: outPath }, (error, result) => {
+  const scssPath = path.join(__dirname, "/sass/style.scss");
+  const folderPath = path.join(__dirname, "public/");
+  const cssPath = path.join(__dirname, "public/style.css");
+
+  const writeCssAndListen = data => {
+    fs.writeFile(cssPath, data, err => {
+      if (err) {
+        console.error(err);
+      } else {
+        app.listen(PORT, () => console.log(`listening on port ${PORT}`));
+      }
+    });
+  };
+
+  sass.render({ file: scssPath, outFile: cssPath }, (error, result) => {
     if (error) {
       console.error(error);
     } else {
-      fs.writeFile(outPath, result.css, err => {
+      // make the director before writing the file.
+      fs.mkdir(folderPath, err => {
         if (err) {
-          console.error(err);
+          if (err.code === "EEXIST") {
+            writeCssAndListen(result.css);
+          } else {
+            console.error(err);
+          }
         } else {
-          app.listen(PORT, () => console.log(`listening on port ${PORT}`));
+          // write the file if no errors.
+          writeCssAndListen(result.css);
         }
       });
     }
